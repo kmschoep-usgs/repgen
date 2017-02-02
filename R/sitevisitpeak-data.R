@@ -12,44 +12,44 @@ sitevisitpeakTable <- function(readingsData, excludeComments){
   for(listRows in row.names(readingsData)){
     listElements <- readingsData[listRows,]
     
-    fvTimeFormatting <- timeFormatting(listElements$time, dateFormat)
-    estTimeFormatting <- timeFormatting(listElements$estimatedTime, dateFormat)
-    ivTimeFormatting <- timeFormatting(listElements$associatedIvTime, dateFormat)
+    fvTimeFormatting <- timeFormatting(listElements[['time']], dateFormat)
+    estTimeFormatting <- timeFormatting(listElements[['estimatedTime']], dateFormat)
+    ivTimeFormatting <- timeFormatting(listElements[['associatedIvTime']], dateFormat)
     
-    quals <- formatQualifiersStringList(listElements$qualifiers[[1]])
+    quals <- formatQualifiersStringList(listElements[['qualifiers']][[1]])
     
-    diff <- readIvDifference(listElements$value, listElements$associatedIvValue)
+    diff <- readIvDifference(listElements[['value']], listElements[['associatedIvValue']])
     
     if(includeComments){
-      toAdd = c(fvTimeFormatting$date,
-                fvTimeFormatting$time,
-                listElements$party, 
-                listElements$sublocation, 
-                listElements$monitoringMethod, 
-                listElements$value,
-                listElements$uncertainty,
-                estTimeFormatting$date,
-                estTimeFormatting$time,
-                formatComments(getComments((listElements$comments))),
-                listElements$associatedIvValue,
+      toAdd = c(fvTimeFormatting[['date']],
+                fvTimeFormatting[['time']],
+                listElements[['party']], 
+                listElements[['sublocation']], 
+                listElements[['monitoringMethod']], 
+                listElements[['value']],
+                listElements[['uncertainty']],
+                estTimeFormatting[['date']],
+                estTimeFormatting[['time']],
+                formatComments(getComments((listElements[['comments']]))),
+                listElements[['associatedIvValue']],
                 quals,
-                ivTimeFormatting$date,
-                ivTimeFormatting$time,
-                listElements$diffPeak)
+                ivTimeFormatting[['date']],
+                ivTimeFormatting[['time']],
+                listElements[['diffPeak']])
     } else {
-      toAdd = c(fvTimeFormatting$date,
-                fvTimeFormatting$time,
-                listElements$party, 
-                listElements$sublocation, 
-                listElements$monitoringMethod, 
-                listElements$value,
-                listElements$uncertainty,
-                estTimeFormatting$date,
-                estTimeFormatting$time,
-                listElements$associatedIvValue,
+      toAdd = c(fvTimeFormatting[['date']],
+                fvTimeFormatting[['time']],
+                listElements[['party']], 
+                listElements[['sublocation']], 
+                listElements[['monitoringMethod']], 
+                listElements[['value']],
+                listElements[['uncertainty']],
+                estTimeFormatting[['date']],
+                estTimeFormatting[['time']],
+                listElements[['associatedIvValue']],
                 quals,
-                ivTimeFormatting$date,
-                ivTimeFormatting$time,
+                ivTimeFormatting[['date']],
+                ivTimeFormatting[['time']],
                 diff)
       
     }
