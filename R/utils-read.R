@@ -150,7 +150,7 @@ readQualifiers <- function(inQualifiers, time=NULL) {
   if(is.null(q) || length(q) < 1) return(NULL);
   
   if (!is.null(time)){
-    qualifiers <- q[time>q$startDate & q$endDate>time,]
+    qualifiers <- q[time>q[['startDate']] & q[['endDate']]>time,]
   } else {
     qualifiers <- q
   }
